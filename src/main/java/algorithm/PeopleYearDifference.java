@@ -6,9 +6,9 @@ public class PeopleYearDifference {
 
     public static final PeopleYearDifference EMPTY = new PeopleYearDifference();
 
-    public Person young;
-    public Person old;
-    public long yearDifference;
+    private Person young;
+    private Person old;
+    private long yearDifference;
 
     private PeopleYearDifference() {
     }
@@ -19,5 +19,17 @@ public class PeopleYearDifference {
         this.young = young;
         this.old = old;
         this.yearDifference = young.birthDate().getYear() - old.birthDate().getYear();
+    }
+
+    public long getYearDifference() {
+        return yearDifference;
+    }
+
+    public Person getOld() {
+        return old;
+    }
+
+    public Person getYoung() {
+        return young;
     }
 }

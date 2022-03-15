@@ -4,8 +4,8 @@ import java.util.function.BiFunction;
 import java.util.function.BiPredicate;
 
 public enum Difference {
-    CLOSEST((answer, result) -> getPeopleYearDifference(answer, result, (a, r) -> a.yearDifference < r.yearDifference)),
-    FURTHEST((answer, result) -> getPeopleYearDifference(answer, result, (a, r) -> a.yearDifference > r.yearDifference));
+    CLOSEST((answer, result) -> getPeopleYearDifference(answer, result, (a, r) -> a.getYearDifference() < r.getYearDifference())),
+    FURTHEST((answer, result) -> getPeopleYearDifference(answer, result, (a, r) -> a.getYearDifference() > r.getYearDifference()));
 
     private BiFunction<PeopleYearDifference, PeopleYearDifference, PeopleYearDifference> compareAgeDistance;
 

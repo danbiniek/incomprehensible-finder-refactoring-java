@@ -30,9 +30,8 @@ public class FinderTest {
         Finder finder = new Finder(list);
 
         PeopleYearDifference result = finder.find(Difference.CLOSEST);
-        assertEquals(null, result.young);
-
-        assertEquals(null, result.old);
+        assertEquals(null, result.getYoung());
+        assertEquals(null, result.getOld());
     }
 
     @Test
@@ -44,8 +43,8 @@ public class FinderTest {
 
         PeopleYearDifference result = finder.find(Difference.CLOSEST);
 
-        assertEquals(null, result.young);
-        assertEquals(null, result.old);
+        assertEquals(null, result.getYoung());
+        assertEquals(null, result.getOld());
     }
 
     @Test
@@ -57,8 +56,8 @@ public class FinderTest {
 
         PeopleYearDifference result = finder.find(Difference.CLOSEST);
 
-        assertEquals(sue, result.young);
-        assertEquals(greg, result.old);
+        assertEquals(sue, result.getYoung());
+        assertEquals(greg, result.getOld());
     }
 
     @Test
@@ -71,8 +70,8 @@ public class FinderTest {
 
         PeopleYearDifference result = finder.find(Difference.FURTHEST);
 
-        assertEquals(greg, result.young);
-        assertEquals(mike, result.old);
+        assertEquals(greg, result.getYoung());
+        assertEquals(mike, result.getOld());
     }
 
     @Test
@@ -86,8 +85,8 @@ public class FinderTest {
 
         PeopleYearDifference result = finder.find(Difference.FURTHEST);
 
-        assertEquals(sue, result.young);
-        assertEquals(sarah, result.old);
+        assertEquals(sue, result.getYoung());
+        assertEquals(sarah, result.getOld());
     }
 
     @Test
@@ -102,8 +101,8 @@ public class FinderTest {
 
         PeopleYearDifference result = finder.find(Difference.CLOSEST);
 
-        assertEquals(sue, result.young);
-        assertEquals(greg, result.old);
+        assertEquals(sue, result.getYoung());
+        assertEquals(greg, result.getOld());
     }
 
 }
