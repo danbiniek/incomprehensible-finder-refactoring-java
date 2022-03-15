@@ -10,16 +10,11 @@ public record Finder(List<Person> people) {
 
         for (int i = 0; i < people.size() - 1; i++) {
             for (int j = i + 1; j < people.size(); j++) {
-                var peopleYearDifference = new PeopleYearDifference();
                 if (people.get(i).birthDate.isAfter(people.get(j).birthDate)) {
-                    peopleYearDifference.young = people.get(i);
-                    peopleYearDifference.old = people.get(j);
+                    peopleYearDifferences.add(new PeopleYearDifference(people.get(i), people.get(j)));
                 } else {
-                    peopleYearDifference.young = people.get(j);
-                    peopleYearDifference.old = people.get(i);
+                    peopleYearDifferences.add(new PeopleYearDifference(people.get(j), people.get(i)));
                 }
-                peopleYearDifference.yearDifference = peopleYearDifference.young.birthDate.getYear() - peopleYearDifference.old.birthDate.getYear();
-                peopleYearDifferences.add(peopleYearDifference);
             }
         }
 
