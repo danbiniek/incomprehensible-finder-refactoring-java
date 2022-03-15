@@ -11,21 +11,17 @@ import static org.junit.Assert.assertEquals;
 
 public class FinderTest {
 
-    Person sue = new Person();
-    Person greg = new Person();
-    Person sarah = new Person();
-    Person mike = new Person();
+    private Person sue;
+    private Person greg;
+    private Person sarah;
+    private Person mike;
 
     @Before
     public void setup() {
-        sue.name = "Sue";
-        sue.birthDate = LocalDate.of(1972, 1, 1);
-        greg.name = "Greg";
-        greg.birthDate = LocalDate.of(1970, 5, 1);
-        sarah.name = "Sarah";
-        sarah.birthDate = LocalDate.of(1940, 1, 1);
-        mike.name = "Mike";
-        mike.birthDate = LocalDate.of(1943, 1, 1);
+        sue = new Person("Sue", LocalDate.of(1972, 1, 1));
+        greg = new Person("Greg", LocalDate.of(1970, 5, 1));
+        sarah = new Person("Sarah", LocalDate.of(1940, 1, 1));
+        mike = new Person("Mike", LocalDate.of(1943, 1, 1));
     }
 
     @Test

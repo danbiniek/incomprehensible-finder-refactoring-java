@@ -19,26 +19,18 @@ public class PeopleYearDifferenceTest {
 
     @Test
     public void aCorrectPeople_shouldBeAdded_whenNewObjectIsCreated() {
-        Person young = new Person();
-        young.name = "test1";
-        young.birthDate = LocalDate.of(1999, 1, 1);
-        Person old = new Person();
-        old.name = "test2";
-        old.birthDate = LocalDate.of(1999, 1, 1);
+        Person young = new Person("test1", LocalDate.of(1999, 1, 1));
+        Person old = new Person("test2", LocalDate.of(1999, 1, 1));
         var result = new PeopleYearDifference(young, old);
 
-        assertEquals("test1", result.young.name);
-        assertEquals("test2", result.old.name);
+        assertEquals("test1", result.young.name());
+        assertEquals("test2", result.old.name());
     }
 
     @Test
     public void aCorrectAgeDifference_shouldBeCalculated_whenNewObjectIsCreated() {
-        Person young = new Person();
-        young.name = "test1";
-        young.birthDate = LocalDate.of(1999, 1, 1);
-        Person old = new Person();
-        old.name = "test2";
-        old.birthDate = LocalDate.of(1989, 1, 1);
+        Person young = new Person("test1", LocalDate.of(1999, 1, 1));
+        Person old = new Person("test2", LocalDate.of(1989, 1, 1));
         var result = new PeopleYearDifference(young, old);
 
         assertEquals(10, result.yearDifference);

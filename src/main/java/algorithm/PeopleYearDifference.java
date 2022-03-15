@@ -18,6 +18,6 @@ public class PeopleYearDifference {
         requireNonNull(old);
         this.young = young;
         this.old = old;
-        this.yearDifference = young.birthDate.getYear() - old.birthDate.getYear();
+        this.yearDifference = young.birthDate().getYear() - old.birthDate().getYear();
     }
 }

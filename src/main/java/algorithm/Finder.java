@@ -10,7 +10,7 @@ public record Finder(List<Person> people) {
 
         for (int i = 0; i < people.size() - 1; i++) {
             for (int j = i + 1; j < people.size(); j++) {
-                if (people.get(i).birthDate.isAfter(people.get(j).birthDate)) {
+                if (people.get(i).birthDate().isAfter(people.get(j).birthDate())) {
                     peopleYearDifferences.add(new PeopleYearDifference(people.get(i), people.get(j)));
                 } else {
                     peopleYearDifferences.add(new PeopleYearDifference(people.get(j), people.get(i)));
