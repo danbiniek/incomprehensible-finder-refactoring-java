@@ -1,53 +1,49 @@
 package algorithm;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class Finder {
-	private final List<Thing> _p;
+public record Finder(List<Person> people) {
 
-	public Finder(List<Thing> p) {
-		_p = p;
-	}
+    public PeopleYearDifference find(Difference distance) {
+        List<PeopleYearDifference> tr = new ArrayList<>();
 
-	public F Find(FT ft) {
-		List<F> tr = new ArrayList<F>();
+        for (int i = 0; i < people.size() - 1; i++) {
+            for (int j = i + 1; j < people.size(); j++) {
+                PeopleYearDifference r = new PeopleYearDifference();
+                if (people.get(i).birthDate.getTime() < people.get(j).birthDate.getTime()) {
+                    r.young = people.get(i);
+                    r.old = people.get(j);
+                } else {
+                    r.young = people.get(j);
+                    r.old = people.get(i);
+                }
+                r.yearDifference = r.old.birthDate.getTime() - r.young.birthDate.getTime();
+                tr.add(r);
+            }
+        }
 
-		for (int i = 0; i < _p.size() - 1; i++) {
-			for (int j = i + 1; j < _p.size(); j++) {
-				F r = new F();
-				if (_p.get(i).birthDate.getTime() < _p.get(j).birthDate.getTime()) {
-					r.P1 = _p.get(i);
-					r.P2 = _p.get(j);
-				} else {
-					r.P1 = _p.get(j);
-					r.P2 = _p.get(i);
-				}
-				r.D = r.P2.birthDate.getTime() - r.P1.birthDate.getTime();
-				tr.add(r);
-			}
-		}
+        if (tr.size() < 1) {
+            return new PeopleYearDifference();
+        }
 
-		if (tr.size() < 1) {
-			return new F();
-		}
+        PeopleYearDifference answer = tr.get(0);
+        for (PeopleYearDifference result : tr) {
+            switch (distance) {
+                case THE_SMALLEST:
+                    if (result.yearDifference < answer.yearDifference) {
+                        answer = result;
+                    }
+                    break;
 
-		F answer = tr.get(0);
-		for (F result : tr) {
-			switch (ft) {
-				case One :
-					if (result.D < answer.D) {
-						answer = result;
-					}
-					break;
+                case THE_BIGGEST:
+                    if (result.yearDifference > answer.yearDifference) {
+                        answer = result;
+                    }
+                    break;
+            }
+        }
 
-				case Two :
-					if (result.D > answer.D) {
-						answer = result;
-					}
-					break;
-			}
-		}
-
-		return answer;
-	}
+        return answer;
+    }
 }
