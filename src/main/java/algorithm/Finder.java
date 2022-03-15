@@ -6,37 +6,37 @@ import java.util.List;
 public record Finder(List<Person> people) {
 
     public PeopleYearDifference find(Difference distance) {
-        List<PeopleYearDifference> tr = new ArrayList<>();
+        List<PeopleYearDifference> peopleYearDifferences = new ArrayList<>();
 
         for (int i = 0; i < people.size() - 1; i++) {
             for (int j = i + 1; j < people.size(); j++) {
-                PeopleYearDifference r = new PeopleYearDifference();
-                if (people.get(i).birthDate.getTime() < people.get(j).birthDate.getTime()) {
-                    r.young = people.get(i);
-                    r.old = people.get(j);
+                var peopleYearDifference = new PeopleYearDifference();
+                if (people.get(i).birthDate.isAfter(people.get(j).birthDate)) {
+                    peopleYearDifference.young = people.get(i);
+                    peopleYearDifference.old = people.get(j);
                 } else {
-                    r.young = people.get(j);
-                    r.old = people.get(i);
+                    peopleYearDifference.young = people.get(j);
+                    peopleYearDifference.old = people.get(i);
                 }
-                r.yearDifference = r.old.birthDate.getTime() - r.young.birthDate.getTime();
-                tr.add(r);
+                peopleYearDifference.yearDifference = peopleYearDifference.young.birthDate.getYear() - peopleYearDifference.old.birthDate.getYear();
+                peopleYearDifferences.add(peopleYearDifference);
             }
         }
 
-        if (tr.size() < 1) {
+        if (peopleYearDifferences.size() < 1) {
             return new PeopleYearDifference();
         }
 
-        PeopleYearDifference answer = tr.get(0);
-        for (PeopleYearDifference result : tr) {
+        PeopleYearDifference answer = peopleYearDifferences.get(0);
+        for (PeopleYearDifference result : peopleYearDifferences) {
             switch (distance) {
-                case THE_SMALLEST:
+                case CLOSEST:
                     if (result.yearDifference < answer.yearDifference) {
                         answer = result;
                     }
                     break;
 
-                case THE_BIGGEST:
+                case FURTHEST:
                     if (result.yearDifference > answer.yearDifference) {
                         answer = result;
                     }
