@@ -19,24 +19,12 @@ public record Finder(List<Person> people) {
         }
 
         if (peopleYearDifferences.size() < 1) {
-            return new PeopleYearDifference();
+            return PeopleYearDifference.EMPTY;
         }
 
         PeopleYearDifference answer = peopleYearDifferences.get(0);
         for (PeopleYearDifference result : peopleYearDifferences) {
-            switch (distance) {
-                case CLOSEST:
-                    if (result.yearDifference < answer.yearDifference) {
-                        answer = result;
-                    }
-                    break;
-
-                case FURTHEST:
-                    if (result.yearDifference > answer.yearDifference) {
-                        answer = result;
-                    }
-                    break;
-            }
+            answer = distance.comparePeople(answer, result);
         }
 
         return answer;
