@@ -1,13 +1,25 @@
 package algorithm;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 public record Finder(List<Person> people) {
 
-    public PeopleYearDifference find(AgeDifferenceType distance) {
-        List<PeopleYearDifference> peopleYearDifferences = new ArrayList<>();
+    public PeopleYearDifference find(AgeDifferenceType diffType) {
+        Set<PeopleYearDifference> peopleYearDifferences = matchEveryone(diffType);
+        return getBestMatch(peopleYearDifferences);
+    }
 
+    private PeopleYearDifference getBestMatch(Set<PeopleYearDifference> peopleYearDifferences) {
+        if (peopleYearDifferences.isEmpty()) {
+            return PeopleYearDifference.EMPTY;
+        }
+        return peopleYearDifferences.iterator().next();
+    }
+
+    private Set<PeopleYearDifference> matchEveryone(AgeDifferenceType diffType) {
+        var peopleYearDifferences = new TreeSet<>(diffType.getAgeDistanceComparator());
         for (int i = 0; i < people.size() - 1; i++) {
             for (int j = i + 1; j < people.size(); j++) {
                 if (people.get(i).birthDate().isAfter(people.get(j).birthDate())) {
@@ -17,16 +29,6 @@ public record Finder(List<Person> people) {
                 }
             }
         }
-
-        if (peopleYearDifferences.size() < 1) {
-            return PeopleYearDifference.EMPTY;
-        }
-
-        PeopleYearDifference answer = peopleYearDifferences.get(0);
-        for (PeopleYearDifference result : peopleYearDifferences) {
-            answer = distance.comparePeople(answer, result);
-        }
-
-        return answer;
+        return peopleYearDifferences;
     }
 }

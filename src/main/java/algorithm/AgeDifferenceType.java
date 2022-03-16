@@ -1,28 +1,18 @@
 package algorithm;
 
-import java.util.function.BiFunction;
-import java.util.function.BiPredicate;
+import java.util.Comparator;
 
 public enum AgeDifferenceType {
-    CLOSEST((answer, result) -> getPeopleYearDifference(answer, result, (a, r) -> a.getYearDifference() < r.getYearDifference())),
-    FURTHEST((answer, result) -> getPeopleYearDifference(answer, result, (a, r) -> a.getYearDifference() > r.getYearDifference()));
+    CLOSEST(Comparator.comparingLong(PeopleYearDifference::getYearDifference)),
+    FURTHEST(Comparator.comparingLong(PeopleYearDifference::getYearDifference).reversed());
 
-    private BiFunction<PeopleYearDifference, PeopleYearDifference, PeopleYearDifference> compareAgeDistance;
-
-    AgeDifferenceType(BiFunction<PeopleYearDifference, PeopleYearDifference, PeopleYearDifference> compareAgeDistance) {
-        this.compareAgeDistance = compareAgeDistance;
+    AgeDifferenceType(Comparator<PeopleYearDifference> ageDistanceComparator) {
+        this.ageDistanceComparator = ageDistanceComparator;
     }
 
-    public PeopleYearDifference comparePeople(PeopleYearDifference answer, PeopleYearDifference result) {
-        return this.compareAgeDistance.apply(answer, result);
-    }
+    private Comparator<PeopleYearDifference> ageDistanceComparator;
 
-    private static PeopleYearDifference getPeopleYearDifference(PeopleYearDifference answer, PeopleYearDifference result,
-                                                                BiPredicate<PeopleYearDifference, PeopleYearDifference> agePredicate) {
-        if (agePredicate.test(result, answer)) {
-            return result;
-        }
-        return answer;
+    public Comparator<PeopleYearDifference> getAgeDistanceComparator() {
+        return ageDistanceComparator;
     }
-
 }

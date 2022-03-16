@@ -13,8 +13,8 @@ public class PeopleYearDifferenceTest {
     public void anEmptyResult_shouldBeReturned_whenEmptyStaticCalled() {
         var empty = PeopleYearDifference.EMPTY;
 
-        assertNull(empty.getYoung());
-        assertNull(empty.getOld());
+        assertNull(empty.getYounger());
+        assertNull(empty.getOlder());
     }
 
     @Test
@@ -23,8 +23,8 @@ public class PeopleYearDifferenceTest {
         Person old = new Person("test2", LocalDate.of(1999, 1, 1));
         var result = new PeopleYearDifference(young, old);
 
-        assertEquals("test1", result.getYoung().name());
-        assertEquals("test2", result.getOld().name());
+        assertEquals("test1", result.getYounger().name());
+        assertEquals("test2", result.getOlder().name());
     }
 
     @Test

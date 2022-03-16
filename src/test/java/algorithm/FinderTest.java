@@ -30,8 +30,8 @@ public class FinderTest {
         Finder finder = new Finder(list);
 
         PeopleYearDifference result = finder.find(AgeDifferenceType.CLOSEST);
-        assertEquals(null, result.getYoung());
-        assertEquals(null, result.getOld());
+        assertEquals(null, result.getYounger());
+        assertEquals(null, result.getOlder());
     }
 
     @Test
@@ -43,8 +43,8 @@ public class FinderTest {
 
         PeopleYearDifference result = finder.find(AgeDifferenceType.CLOSEST);
 
-        assertEquals(null, result.getYoung());
-        assertEquals(null, result.getOld());
+        assertEquals(null, result.getYounger());
+        assertEquals(null, result.getOlder());
     }
 
     @Test
@@ -56,8 +56,8 @@ public class FinderTest {
 
         PeopleYearDifference result = finder.find(AgeDifferenceType.CLOSEST);
 
-        assertEquals(sue, result.getYoung());
-        assertEquals(greg, result.getOld());
+        assertEquals(sue, result.getYounger());
+        assertEquals(greg, result.getOlder());
     }
 
     @Test
@@ -70,8 +70,8 @@ public class FinderTest {
 
         PeopleYearDifference result = finder.find(AgeDifferenceType.FURTHEST);
 
-        assertEquals(greg, result.getYoung());
-        assertEquals(mike, result.getOld());
+        assertEquals(greg, result.getYounger());
+        assertEquals(mike, result.getOlder());
     }
 
     @Test
@@ -85,8 +85,8 @@ public class FinderTest {
 
         PeopleYearDifference result = finder.find(AgeDifferenceType.FURTHEST);
 
-        assertEquals(sue, result.getYoung());
-        assertEquals(sarah, result.getOld());
+        assertEquals(sue, result.getYounger());
+        assertEquals(sarah, result.getOlder());
     }
 
     @Test
@@ -101,8 +101,8 @@ public class FinderTest {
 
         PeopleYearDifference result = finder.find(AgeDifferenceType.CLOSEST);
 
-        assertEquals(sue, result.getYoung());
-        assertEquals(greg, result.getOld());
+        assertEquals(sue, result.getYounger());
+        assertEquals(greg, result.getOlder());
     }
 
 }
