@@ -3,13 +3,13 @@ package algorithm;
 import java.util.function.BiFunction;
 import java.util.function.BiPredicate;
 
-public enum Difference {
+public enum AgeDifferenceType {
     CLOSEST((answer, result) -> getPeopleYearDifference(answer, result, (a, r) -> a.getYearDifference() < r.getYearDifference())),
     FURTHEST((answer, result) -> getPeopleYearDifference(answer, result, (a, r) -> a.getYearDifference() > r.getYearDifference()));
 
     private BiFunction<PeopleYearDifference, PeopleYearDifference, PeopleYearDifference> compareAgeDistance;
 
-    Difference(BiFunction<PeopleYearDifference, PeopleYearDifference, PeopleYearDifference> compareAgeDistance) {
+    AgeDifferenceType(BiFunction<PeopleYearDifference, PeopleYearDifference, PeopleYearDifference> compareAgeDistance) {
         this.compareAgeDistance = compareAgeDistance;
     }
 

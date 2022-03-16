@@ -29,7 +29,7 @@ public class FinderTest {
         List<Person> list = new ArrayList<>();
         Finder finder = new Finder(list);
 
-        PeopleYearDifference result = finder.find(Difference.CLOSEST);
+        PeopleYearDifference result = finder.find(AgeDifferenceType.CLOSEST);
         assertEquals(null, result.getYoung());
         assertEquals(null, result.getOld());
     }
@@ -41,7 +41,7 @@ public class FinderTest {
 
         Finder finder = new Finder(list);
 
-        PeopleYearDifference result = finder.find(Difference.CLOSEST);
+        PeopleYearDifference result = finder.find(AgeDifferenceType.CLOSEST);
 
         assertEquals(null, result.getYoung());
         assertEquals(null, result.getOld());
@@ -54,7 +54,7 @@ public class FinderTest {
         list.add(greg);
         Finder finder = new Finder(list);
 
-        PeopleYearDifference result = finder.find(Difference.CLOSEST);
+        PeopleYearDifference result = finder.find(AgeDifferenceType.CLOSEST);
 
         assertEquals(sue, result.getYoung());
         assertEquals(greg, result.getOld());
@@ -68,7 +68,7 @@ public class FinderTest {
 
         Finder finder = new Finder(list);
 
-        PeopleYearDifference result = finder.find(Difference.FURTHEST);
+        PeopleYearDifference result = finder.find(AgeDifferenceType.FURTHEST);
 
         assertEquals(greg, result.getYoung());
         assertEquals(mike, result.getOld());
@@ -83,7 +83,7 @@ public class FinderTest {
         list.add(greg);
         Finder finder = new Finder(list);
 
-        PeopleYearDifference result = finder.find(Difference.FURTHEST);
+        PeopleYearDifference result = finder.find(AgeDifferenceType.FURTHEST);
 
         assertEquals(sue, result.getYoung());
         assertEquals(sarah, result.getOld());
@@ -99,7 +99,7 @@ public class FinderTest {
 
         Finder finder = new Finder(list);
 
-        PeopleYearDifference result = finder.find(Difference.CLOSEST);
+        PeopleYearDifference result = finder.find(AgeDifferenceType.CLOSEST);
 
         assertEquals(sue, result.getYoung());
         assertEquals(greg, result.getOld());

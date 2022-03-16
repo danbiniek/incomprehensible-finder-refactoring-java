@@ -18,7 +18,7 @@ public class PeopleYearDifference {
         requireNonNull(old);
         this.young = young;
         this.old = old;
-        this.yearDifference = young.birthDate().getYear() - old.birthDate().getYear();
+        this.yearDifference = Math.abs(young.birthDate().getYear() - old.birthDate().getYear());
     }
 
     public long getYearDifference() {
@@ -31,5 +31,14 @@ public class PeopleYearDifference {
 
     public Person getYoung() {
         return young;
+    }
+
+    @Override
+    public String toString() {
+        return "PeopleYearDifference{" +
+                "young=" + young +
+                ", old=" + old +
+                ", yearDifference=" + yearDifference +
+                '}';
     }
 }

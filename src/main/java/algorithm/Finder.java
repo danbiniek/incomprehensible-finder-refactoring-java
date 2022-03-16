@@ -5,7 +5,7 @@ import java.util.List;
 
 public record Finder(List<Person> people) {
 
-    public PeopleYearDifference find(Difference distance) {
+    public PeopleYearDifference find(AgeDifferenceType distance) {
         List<PeopleYearDifference> peopleYearDifferences = new ArrayList<>();
 
         for (int i = 0; i < people.size() - 1; i++) {
